@@ -1,0 +1,472 @@
+{
+  "timestamp": "2025-04-10T23:42:25.525537",
+  "initial_routes": {
+    "Route 19": {
+      "stops": [
+        "Valasaravakkam (Municipal office)",
+        " Kesavarthini",
+        "Alwarthirunagar",
+        "Virugambakkam",
+        "KK Nagar Pondy GH",
+        " KK Nagar Roundana",
+        " College"
+      ],
+      "total_demand": 12,
+      "stop_demands": {
+        "Alwarthirunagar": 1,
+        "KK Nagar Pondy GH": 2,
+        "KK Nagar Roundana": 1,
+        "Valasaravakkam (Municipal office)": 5,
+        "Virugambakkam": 3
+      }
+    },
+    "Route 21": {
+      "stops": [
+        "Avichi School",
+        "Sooriya Hospital",
+        "Vadapalani Depot",
+        "Vadapalani Signal",
+        "Ashok Nagar Canara Bank",
+        "Ashok Nagar",
+        "Srinivasa theatre",
+        "Aranganathan Subway",
+        "Saidapet Court",
+        "McDonald's Velachery",
+        "College"
+      ],
+      "total_demand": 10,
+      "stop_demands": {
+        "Avichi School": 4,
+        "Avichi school": 1,
+        "McDonald's Velachery": 3,
+        "Srinivasa theatre": 1,
+        "Vadapalani Depot": 1
+      }
+    },
+    "Route 22": {
+      "stops": [
+        "PSBB School",
+        "Double Tank",
+        "KK Nagar depot",
+        "ESI Hospital",
+        "Ashok Pillar",
+        "Govindan Road",
+        "Mettupalayam",
+        "Srinivasa theatre",
+        "Aranganathan Subway",
+        "Saidapet Court",
+        "IGP BS",
+        "College"
+      ],
+      "total_demand": 7,
+      "stop_demands": {
+        "Double Tank": 1,
+        "ESI Hospital": 1,
+        "Govindan Road": 1,
+        "KK Nagar depot": 4
+      }
+    },
+    "Route 23": {
+      "stops": [
+        "Jeyaraj Theatre",
+        "Government Boys School",
+        "Hotel Sangamam",
+        "Postal Colony",
+        "Ayodhya Mandapam",
+        "Panigraha Kalyanamandapam",
+        "Brindavan Street",
+        "Duraiswamy Road",
+        "Venkatnarayana Road",
+        "Devar Silai",
+        "College"
+      ],
+      "total_demand": 8,
+      "stop_demands": {
+        "Ayodhya Mandapam": 1,
+        "Brindavan Street": 1,
+        "Duraiswamy Road": 1,
+        "Government Boys School": 2,
+        "Panigraha Kalyanamandapam": 1,
+        "Postal Colony": 2
+      }
+    },
+    "Route 24": {
+      "stops": [
+        "Power House (Kodambakkam)",
+        "Liberty Meenakshi College",
+        "Periyar Road(BBC)",
+        "Bharathi Nagar(NUR)",
+        "T.Nagar BS Signal(Burkit Road)",
+        "Audi Showroom Signal",
+        "Saidapet Metro",
+        "Kalainjar Arch",
+        "Saidapet Court",
+        "Pudupakkam",
+        "College"
+      ],
+      "total_demand": 7,
+      "stop_demands": {
+        "Bharathi Nagar(NUR)": 1,
+        "Liberty Meenakshi College": 2,
+        "Periyar Road(BBC)": 2,
+        "Pudupakkam": 1,
+        "Saidapet Metro": 1
+      }
+    }
+  },
+  "removed_routes": [
+    {
+      "route_id": "Route 22",
+      "stops_assigned": [
+        {
+          "stop": "Double Tank",
+          "to_route": "Route 19",
+          "demand": 1,
+          "position": 6
+        },
+        {
+          "stop": "KK Nagar depot",
+          "to_route": "Route 19",
+          "demand": 4,
+          "position": 7
+        },
+        {
+          "stop": "ESI Hospital",
+          "to_route": "Route 19",
+          "demand": 1,
+          "position": 8
+        },
+        {
+          "stop": "Govindan Road",
+          "to_route": "Route 21",
+          "demand": 1,
+          "position": 6
+        }
+      ]
+    },
+    {
+      "route_id": "Route 23",
+      "stops_assigned": [
+        {
+          "stop": "Government Boys School",
+          "to_route": "Route 19",
+          "demand": 2,
+          "position": 9
+        },
+        {
+          "stop": "Postal Colony",
+          "to_route": "Route 21",
+          "demand": 2,
+          "position": 5
+        },
+        {
+          "stop": "Ayodhya Mandapam",
+          "to_route": "Route 21",
+          "demand": 1,
+          "position": 5
+        },
+        {
+          "stop": "Panigraha Kalyanamandapam",
+          "to_route": "Route 24",
+          "demand": 1,
+          "position": 4
+        },
+        {
+          "stop": "Brindavan Street",
+          "to_route": "Route 24",
+          "demand": 1,
+          "position": 4
+        },
+        {
+          "stop": "Duraiswamy Road",
+          "to_route": "Route 21",
+          "demand": 1,
+          "position": 3
+        }
+      ]
+    }
+  ],
+  "merge_operations": [
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 19",
+      "stop": "Avichi School",
+      "demand": 4,
+      "insert_position": 4,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 19",
+      "stop": "Vadapalani Depot",
+      "demand": 1,
+      "insert_position": 5,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 22",
+      "stop": "Srinivasa theatre",
+      "demand": 1,
+      "insert_position": 7,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 24",
+      "stop": "McDonald's Velachery",
+      "demand": 3,
+      "insert_position": 9,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 22",
+      "to_route": "Route 19",
+      "stop": "Double Tank",
+      "demand": 1,
+      "insert_position": 6,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 22",
+      "to_route": "Route 19",
+      "stop": "KK Nagar depot",
+      "demand": 4,
+      "insert_position": 7,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 22",
+      "to_route": "Route 19",
+      "stop": "ESI Hospital",
+      "demand": 1,
+      "insert_position": 8,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 22",
+      "to_route": "Route 21",
+      "stop": "Govindan Road",
+      "demand": 1,
+      "insert_position": 6,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 19",
+      "stop": "Avichi School",
+      "demand": 4,
+      "insert_position": 4,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 19",
+      "stop": "Vadapalani Depot",
+      "demand": 1,
+      "insert_position": 5,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 19",
+      "stop": "Govindan Road",
+      "demand": 1,
+      "insert_position": 11,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 19",
+      "stop": "Srinivasa theatre",
+      "demand": 1,
+      "insert_position": 12,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 24",
+      "stop": "McDonald's Velachery",
+      "demand": 3,
+      "insert_position": 9,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 23",
+      "to_route": "Route 19",
+      "stop": "Government Boys School",
+      "demand": 2,
+      "insert_position": 9,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 23",
+      "to_route": "Route 21",
+      "stop": "Postal Colony",
+      "demand": 2,
+      "insert_position": 5,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 23",
+      "to_route": "Route 21",
+      "stop": "Ayodhya Mandapam",
+      "demand": 1,
+      "insert_position": 5,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 23",
+      "to_route": "Route 24",
+      "stop": "Panigraha Kalyanamandapam",
+      "demand": 1,
+      "insert_position": 4,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 23",
+      "to_route": "Route 24",
+      "stop": "Brindavan Street",
+      "demand": 1,
+      "insert_position": 4,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 23",
+      "to_route": "Route 21",
+      "stop": "Duraiswamy Road",
+      "demand": 1,
+      "insert_position": 3,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 19",
+      "stop": "Avichi School",
+      "demand": 4,
+      "insert_position": 4,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 19",
+      "stop": "Vadapalani Depot",
+      "demand": 1,
+      "insert_position": 5,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 24",
+      "stop": "Duraiswamy Road",
+      "demand": 1,
+      "insert_position": 4,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 24",
+      "stop": "Ayodhya Mandapam",
+      "demand": 1,
+      "insert_position": 7,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 24",
+      "stop": "Postal Colony",
+      "demand": 2,
+      "insert_position": 8,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 19",
+      "stop": "Govindan Road",
+      "demand": 1,
+      "insert_position": 11,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 19",
+      "stop": "Srinivasa theatre",
+      "demand": 1,
+      "insert_position": 12,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 21",
+      "to_route": "Route 24",
+      "stop": "McDonald's Velachery",
+      "demand": 3,
+      "insert_position": 14,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    },
+    {
+      "from_route": "Route 24",
+      "to_route": "Route 21",
+      "stop": "Liberty Meenakshi College",
+      "demand": 2,
+      "insert_position": 3,
+      "timestamp": "2025-04-10T23:42:25.525537"
+    }
+  ],
+  "final_routes": {
+    "Route 19": {
+      "stops": [
+        "Valasaravakkam (Municipal office)",
+        " Kesavarthini",
+        "Alwarthirunagar",
+        "Virugambakkam",
+        "KK Nagar Pondy GH",
+        " KK Nagar Roundana",
+        "Double Tank",
+        "KK Nagar depot",
+        "ESI Hospital",
+        "Government Boys School",
+        " College"
+      ],
+      "total_demand": 20
+    },
+    "Route 21": {
+      "stops": [
+        "Avichi School",
+        "Sooriya Hospital",
+        "Vadapalani Depot",
+        "Duraiswamy Road",
+        "Vadapalani Signal",
+        "Ashok Nagar Canara Bank",
+        "Ayodhya Mandapam",
+        "Postal Colony",
+        "Ashok Nagar",
+        "Govindan Road",
+        "Srinivasa theatre",
+        "Aranganathan Subway",
+        "Saidapet Court",
+        "McDonald's Velachery",
+        "College"
+      ],
+      "total_demand": 15
+    },
+    "Route 24": {
+      "stops": [
+        "Power House (Kodambakkam)",
+        "Liberty Meenakshi College",
+        "Periyar Road(BBC)",
+        "Bharathi Nagar(NUR)",
+        "Brindavan Street",
+        "Panigraha Kalyanamandapam",
+        "T.Nagar BS Signal(Burkit Road)",
+        "Audi Showroom Signal",
+        "Saidapet Metro",
+        "Kalainjar Arch",
+        "Saidapet Court",
+        "Pudupakkam",
+        "College"
+      ],
+      "total_demand": 9
+    }
+  },
+  "demand_changes": []
+}
