@@ -1,3 +1,4 @@
 osmnx_cache/
 cache/
 .venv/
+__pycache__/
