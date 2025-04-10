@@ -72,10 +72,10 @@ def try_osmnx_matrix(stops, all_stops, location_col, lat_col, lon_col):
 
         # Try to load from cache first
         G = load_cached_graph(bbox)
-        
+
         if G is None:
             print("Downloading road network (this only happens once)...")
-            G = ox.graph_from_bbox(max_lat, min_lat, max_lon, min_lon, network_type='drive')
+            G = ox.graph_from_bbox(bbox, network_type='drive')
             G = ox.add_edge_speeds(G)
             G = ox.add_edge_travel_times(G)
             save_graph_to_cache(G, bbox)
@@ -90,8 +90,8 @@ def try_osmnx_matrix(stops, all_stops, location_col, lat_col, lon_col):
             stop_data = stops[stops[location_col] == stop].iloc[0]
             try:
                 nodes[stop] = ox.distance.nearest_nodes(G,
-                                                      X=stop_data[lon_col],
-                                                      Y=stop_data[lat_col])
+                                                        X=stop_data[lon_col],
+                                                        Y=stop_data[lat_col])
             except ValueError as e:
                 print(f"Warning: Could not find nearest node for {stop} using OSMnx. Falling back to haversine for this stop. Error: {e}")
                 nodes[stop] = None
