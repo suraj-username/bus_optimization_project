@@ -6,6 +6,7 @@ import time
 import os
 import pickle
 import hashlib
+import re
 
 # Cache directories setup
 OSMNX_CACHE_DIR = "osmnx_cache"
@@ -39,15 +40,35 @@ def save_graph_to_cache(graph, bbox):
     except:
         print("Warning: Failed to save graph to cache")
 
+def sanitize_filename(name):
+    """Sanitize a string to be used as a filename"""
+    # Replace newlines, carriage returns with underscores
+    name = name.replace('\n', '_').replace('\r', '_')
+    
+    # Replace illegal filename characters (Windows + common Unix restrictions)
+    # \ / : * ? " < > | and control characters
+    name = re.sub(r'[\\/:*?"<>|\x00-\x1F\x7F]', '_', name)
+    
+    # Trim leading/trailing whitespace and periods
+    name = name.strip('. ')
+    
+    return name
+
 def get_distance_matrix_cache_filename(routes, college_stop):
     """Generate a consistent cache filename for a distance matrix based on routes"""
+    # Sanitize college stop name to ensure it's filename-safe
+    safe_college_stop = sanitize_filename(college_stop)
+    
     # Sort route numbers to ensure consistent naming regardless of input order
     sorted_routes = sorted(routes)
+    
     # Include college stop in the identifier
-    identifier = f"{college_stop}_" + "_".join(sorted_routes)
+    identifier = f"{safe_college_stop}_" + "_".join(sorted_routes)
+    
     # Create an MD5 hash if the filename might be too long
     if len(identifier) > 100:
         identifier = hashlib.md5(identifier.encode()).hexdigest()
+    
     return os.path.join(DISTANCE_MATRIX_CACHE_DIR, f"distance_matrix_{identifier}.pkl")
 
 def load_cached_distance_matrix(routes, college_stop):
