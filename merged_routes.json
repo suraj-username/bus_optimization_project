@@ -119,11 +119,6 @@
     "Virugambakkam",
     "KK Nagar Pondy GH",
     " KK Nagar Roundana",
-    "Double Tank",
-    "KK Nagar depot",
-    "ESI Hospital",
-    "Govindan Road",
-    "Srinivasa theatre",
     "Srinivasa theatre",
     " College"
   ],
@@ -150,6 +145,20 @@
     "Valluvar Statue",
     "LUZ Corner",
     "Srinivasapuram(BATA\\Showroom)",
+    "College"
+  ],
+  "Route 22": [
+    "PSBB School",
+    "Double Tank",
+    "KK Nagar depot",
+    "ESI Hospital",
+    "Ashok Pillar",
+    "Govindan Road",
+    "Mettupalayam",
+    "Srinivasa theatre",
+    "Aranganathan Subway",
+    "Saidapet Court",
+    "IGP BS",
     "College"
   ],
   "Route 23": [
@@ -179,24 +188,10 @@
     "Pudupakkam",
     "College"
   ],
-  "Route 26": [
-    "Ponniamman Koil",
-    "Balaiah Garden",
-    "Sadasiva Nagar",
-    "Ram Nagar",
-    "Srinivasa Nagar",
-    "College"
-  ],
   "Route 27": [
     "Mandaveli Rly St",
     "Sangeetha",
-    "Guindy RS",
     "Mettukuppam Flyover",
-    "Prasanth Hospital",
-    "Vijayanagar",
-    "Tansi Nagar",
-    "Baby Nagar",
-    "Taramani Church",
     "Thoraipakkam Flyover",
     "Perungudi Flyover",
     "PTC Qtrs BS",
@@ -208,7 +203,6 @@
     "Victoria Apt. Kazhipatur",
     "TVH Apt.",
     "Padur Roundana",
-    "Opp to Chetinnad",
     "College"
   ],
   "Route 28": [
@@ -224,6 +218,19 @@
     "Kalavakkam",
     "College"
   ],
+  "Route 29": [
+    "Anagaputhur BS",
+    "Amman Koil",
+    "Pammal",
+    "Church",
+    "Krishna Nagar BS",
+    "Pillaiyar Koil",
+    "Pallavaram",
+    "Ponds",
+    "MIT",
+    "Indira Mills",
+    "College"
+  ],
   "Route 3": [
     "Peravallur BS",
     "Venus (Gandhi Statue)",
@@ -232,20 +239,17 @@
     "Ottery",
     "College"
   ],
-  "Route 32": [
-    "Hasthinapuram",
-    "Muthumaari Amman Kovil Bus Stop",
-    "Kumaran Kundram",
-    "IndianOil",
-    "Indira Mills",
-    "Hindu Mission Hospita",
+  "Route 31": [
+    "Independence Day Park",
+    "Hotel Saravana Square",
+    "Adambakkam Metro",
+    "Ponniamman Koil",
     "College"
   ],
   "Route 33": [
     "Devi Karumariamman Temple",
-    "Adambakkam Metro",
-    "Independence Day Park",
-    "Hotel Saravana Square",
+    "Ram Nagar",
+    "Balaiah Garden",
     "Rani Kalyanamandapam",
     "Echankadu Signal",
     "Kovilambakkam BS",
@@ -265,15 +269,24 @@
     "Kelambakkam (opp.police station)",
     "College"
   ],
+  "Route 39": [
+    "Guindy RS",
+    " Gurunanak College",
+    "Gandhi Rd.Jn",
+    "Dandeeswaran",
+    "Prasanth Hospital",
+    "Vijayanagar",
+    "Tansi Nagar",
+    "Baby Nagar",
+    "Taramani Church",
+    "Opp to Chetinnad",
+    "College"
+  ],
   "Route 4": [
     "Porur (Kumar Sweets)",
     "Saravana stores (shell PB)",
-    "Anagaputhur BS",
-    "Pammal",
-    "Krishna Nagar BS",
-    "Pillaiyar Koil",
     "Saravana Stores (Daalchine)",
-    "MIT",
+    "Hasthinapuram",
     "College"
   ],
   "Route 40": [
@@ -292,8 +305,6 @@
     "Selaiyur PS",
     " Camp Road (junction point)",
     "Rajakilpakkam (bus stop)",
-    "Sembakkam BS",
-    "Medavakkam Koot Road (BS)",
     "Medavakkam Koot Road (BS)",
     "College"
   ],
@@ -301,8 +312,16 @@
     "Devaraj Nagar(Bharath Engg)",
     "Indira Nagar(bs)",
     "Mahalakshmi Nagar(BS)",
-    "Kamarajapuram BS",
     "Vijayanagaram (BS)",
+    "College"
+  ],
+  "Route 42a": [
+    "Kamarajapuram BS",
+    "Sembakkam BS",
+    "Gowrivakkam (BS)",
+    "Santhosapuram (BS)",
+    "Puthukoil (Shri Puthu Kovil)",
+    "Medavakkam Koot Road (BS)",
     "College"
   ],
   "Route 43": [
@@ -322,8 +341,8 @@
   "Route 4a": [
     "Mugalaivakkam BS",
     "Ramapuram BS",
-    "Pallavaram",
     "Sanitorium (GK Hotel)",
+    "Hindu Mission Hospita",
     "Erimbuliyur",
     "Perungalathur",
     "College"
