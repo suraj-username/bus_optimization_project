@@ -5,15 +5,18 @@ from geopy.distance import great_circle
 import time
 import os
 import pickle
+import hashlib
 
-# Cache directory setup
-CACHE_DIR = "osmnx_cache"
-os.makedirs(CACHE_DIR, exist_ok=True)
+# Cache directories setup
+OSMNX_CACHE_DIR = "osmnx_cache"
+DISTANCE_MATRIX_CACHE_DIR = "distance_matrices"
+os.makedirs(OSMNX_CACHE_DIR, exist_ok=True)
+os.makedirs(DISTANCE_MATRIX_CACHE_DIR, exist_ok=True)
 
 def get_graph_cache_filename(bbox):
     """Generate a consistent cache filename based on bounding box"""
     bbox_str = "_".join([f"{coord:.6f}" for coord in bbox])
-    return os.path.join(CACHE_DIR, f"graph_{bbox_str}.pkl")
+    return os.path.join(OSMNX_CACHE_DIR, f"graph_{bbox_str}.pkl")
 
 def load_cached_graph(bbox):
     """Try to load a cached graph"""
@@ -36,18 +39,67 @@ def save_graph_to_cache(graph, bbox):
     except:
         print("Warning: Failed to save graph to cache")
 
+def get_distance_matrix_cache_filename(routes, college_stop):
+    """Generate a consistent cache filename for a distance matrix based on routes"""
+    # Sort route numbers to ensure consistent naming regardless of input order
+    sorted_routes = sorted(routes)
+    # Include college stop in the identifier
+    identifier = f"{college_stop}_" + "_".join(sorted_routes)
+    # Create an MD5 hash if the filename might be too long
+    if len(identifier) > 100:
+        identifier = hashlib.md5(identifier.encode()).hexdigest()
+    return os.path.join(DISTANCE_MATRIX_CACHE_DIR, f"distance_matrix_{identifier}.pkl")
+
+def load_cached_distance_matrix(routes, college_stop):
+    """Try to load a cached distance matrix"""
+    cache_file = get_distance_matrix_cache_filename(routes, college_stop)
+    if os.path.exists(cache_file):
+        try:
+            with open(cache_file, 'rb') as f:
+                print("Loading cached distance matrix...")
+                return pickle.load(f)
+        except:
+            print("Distance matrix cache file corrupted, will recalculate")
+    return None
+
+def save_distance_matrix_to_cache(distance_matrix, routes, college_stop):
+    """Save distance matrix to cache"""
+    cache_file = get_distance_matrix_cache_filename(routes, college_stop)
+    try:
+        with open(cache_file, 'wb') as f:
+            pickle.dump(distance_matrix, f)
+        print(f"Distance matrix saved to cache: {cache_file}")
+    except Exception as e:
+        print(f"Warning: Failed to save distance matrix to cache: {e}")
+
 def create_distance_matrix(stops, college_stop, location_col='Location', lat_col='Latitude', lon_col='Longitude'):
     """
     Create a distance matrix using OSMnx for road network distances.
     Falls back to haversine if OSMnx fails.
+    Now checks for cached distance matrices first.
     """
     # Get all unique stops
     all_stops = stops[location_col].unique().tolist()
-
+    
     # Ensure college is only included once
     if college_stop in all_stops:
         all_stops = [s for s in all_stops if s != college_stop] + [college_stop]
-
+    
+    # Get unique routes for this calculation
+    routes = stops['Route'].unique().tolist()
+    
+    # Try to load from cache first
+    cached_matrix = load_cached_distance_matrix(routes, college_stop)
+    if cached_matrix is not None:
+        # Verify all stops are in the cached matrix
+        missing_stops = [stop for stop in all_stops if stop not in cached_matrix]
+        if not missing_stops:
+            print("Using cached distance matrix")
+            return cached_matrix
+        else:
+            print(f"Cache doesn't contain all required stops. Missing: {missing_stops}")
+            print("Recalculating distance matrix...")
+    
     # First try with OSMnx for road distances
     distance_matrix = try_osmnx_matrix(stops, all_stops, location_col, lat_col, lon_col)
 
@@ -55,7 +107,10 @@ def create_distance_matrix(stops, college_stop, location_col='Location', lat_col
     if distance_matrix is None:
         print("Falling back to haversine distance calculations")
         distance_matrix = create_haversine_matrix(stops, all_stops, location_col, lat_col, lon_col)
-
+    
+    # Save to cache
+    save_distance_matrix_to_cache(distance_matrix, routes, college_stop)
+    
     return distance_matrix
 
 def try_osmnx_matrix(stops, all_stops, location_col, lat_col, lon_col):

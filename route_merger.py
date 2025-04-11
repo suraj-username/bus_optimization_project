@@ -62,8 +62,10 @@ class MergeLogger:
 def merge_routes(routes, stop_demands, distance_matrix, college_stop, route_stop_demands=None):
     """
     Merge routes while respecting constraints with proper demand calculation.
+    If no route can be removed, revert to original routes.
     """
-    alive_routes = deepcopy(routes)
+    # Save original routes and demands
+    original_routes = deepcopy(routes)
     logger = MergeLogger()
     
     # Initialize route_stop_demands if not provided
@@ -89,6 +91,9 @@ def merge_routes(routes, stop_demands, distance_matrix, college_stop, route_stop
     else:
         route_stop_demands = deepcopy(route_stop_demands)
     
+    # Keep a copy of the original route_stop_demands
+    original_route_stop_demands = deepcopy(route_stop_demands)
+    
     # Calculate total demand for each route PROPERLY from route_stop_demands
     route_demands = {
         route_id: sum(demands.values())
@@ -96,7 +101,11 @@ def merge_routes(routes, stop_demands, distance_matrix, college_stop, route_stop
     }
     
     # Log initial state with proper demand calculation
-    logger.log_initial_state(alive_routes, route_demands, route_stop_demands)
+    logger.log_initial_state(original_routes, route_demands, original_route_stop_demands)
+    
+    # Track if any routes were removed during the process
+    any_route_removed = False
+    alive_routes = deepcopy(routes)
     
     while True:
         route_removed = False
@@ -202,10 +211,21 @@ def merge_routes(routes, stop_demands, distance_matrix, college_stop, route_stop
                 del route_stop_demands[remove_route_id]
                 
                 route_removed = True
+                any_route_removed = True
                 break
         
         if not route_removed:
             break
+    
+    # If no routes could be removed, revert to the original routes
+    if not any_route_removed:
+        print("No routes could be merged. Reverting to original routes.")
+        alive_routes = original_routes
+        route_stop_demands = original_route_stop_demands
+        route_demands = {
+            route_id: sum(demands.values())
+            for route_id, demands in original_route_stop_demands.items()
+        }
     
     # Log final state with proper demand calculation
     logger.log_final_state(alive_routes, {

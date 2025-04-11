@@ -2,6 +2,8 @@ from data_loader import load_route_stops, load_passenger_data
 from distance_matrix import create_distance_matrix
 from route_merger import merge_routes
 import json
+import os
+from datetime import datetime
 
 def prepare_merge_inputs(excel_file, selected_routes, filters=None):
     """Prepare all inputs needed for the merge_routes function with filtering."""
@@ -77,29 +79,83 @@ def print_merge_summary(log):
     print(f"Final route count: {len(log['final_routes'])}")
     print(f"Total merge operations: {len(log['merge_operations'])}")
 
+def save_overall_statistics(all_logs):
+    """Save overall statistics from all merge operations"""
+    total_initial_routes = sum(len(log['initial_routes']) for log in all_logs)
+    total_removed_routes = sum(len(log['removed_routes']) for log in all_logs)
+    total_final_routes = sum(len(log['final_routes']) for log in all_logs)
+    total_merge_ops = sum(len(log['merge_operations']) for log in all_logs)
+    
+    print("\n==== OVERALL STATISTICS ====")
+    print(f"Total initial routes processed: {total_initial_routes}")
+    print(f"Total routes removed: {total_removed_routes}")
+    print(f"Total final routes: {total_final_routes}")
+    print(f"Total merge operations: {total_merge_ops}")
+    print(f"Route reduction: {total_removed_routes} ({(total_removed_routes / total_initial_routes * 100):.2f}%)")
+
 if __name__ == '__main__':
     excel_file = 'cleaned_file.xlsx'
-    selected_routes = ['19', '21', '22', '23', '24']
+    selected_routes_groups = [
+        ['1', '7', '9a', '9b', '18'],
+        ['14', '15', '19', '21', '22', '23', '24'],
+        ['4', '4a', '29', '32', '36'],
+        ['5', '6', '8', '20', '25', '35', '37'],
+        ['10', '27', '34', '38', '38a', '38b', '39', '40'],
+        ['41', '42', '42a'],
+        ['16', '26', '26a', '30', '31', '33'],
+        ['3', '11'],
+        ['12', '13'],
+        ['2'],
+        ['28'],
+        ['43'],
+        ['9'],
+        #['17']
+    ]
     
     filters = {
         'SSN': [1, 'Faculty'],
         'SNU': [2]
     }
     
-    inputs = prepare_merge_inputs(excel_file, selected_routes, filters)
+    # Create a directory for merged routes if it doesn't exist
+    os.makedirs('merged_routes', exist_ok=True)
     
-    merged_routes, merge_log = merge_routes(
-        routes=inputs['routes'],
-        stop_demands=inputs['stop_demands'],
-        distance_matrix=inputs['distance_matrix'],
-        college_stop=inputs['college_stop'],
-        route_stop_demands=inputs['route_stop_demands']
-    )
+    # Process each group of routes
+    all_merged_routes = {}
+    all_logs = []
     
-    # Print the enhanced summary
-    print_merge_summary(merge_log)
+    for group_index, selected_routes in enumerate(selected_routes_groups):
+        print(f"\n\n======= PROCESSING ROUTE GROUP {group_index + 1}: {selected_routes} =======")
+        
+        inputs = prepare_merge_inputs(excel_file, selected_routes, filters)
+        
+        merged_routes, merge_log = merge_routes(
+            routes=inputs['routes'],
+            stop_demands=inputs['stop_demands'],
+            distance_matrix=inputs['distance_matrix'],
+            college_stop=inputs['college_stop'],
+            route_stop_demands=inputs['route_stop_demands']
+        )
+        
+        # Print the detailed summary for this group
+        print_merge_summary(merge_log)
+        
+        # Save this group's routes to a separate file
+        group_filename = f"merged_routes/group_{group_index + 1}_routes.json"
+        with open(group_filename, 'w') as f:
+            json.dump(merged_routes, f, indent=2)
+        print(f"\nMerged routes for group {group_index + 1} saved to '{group_filename}'")
+        
+        # Add to overall collection
+        all_merged_routes.update(merged_routes)
+        all_logs.append(merge_log)
     
-    # Also save the full merged routes
+    # Save all merged routes combined
+    # Sort the keys (route names) to maintain alphabetical/numerical order
+    sorted_merged_routes = {k: all_merged_routes[k] for k in sorted(all_merged_routes.keys())}
     with open('merged_routes.json', 'w') as f:
-        json.dump(merged_routes, f, indent=2)
-    print("\nFull merged routes saved to 'merged_routes.json'")
+        json.dump(sorted_merged_routes, f, indent=2)
+    print("\nAll merged routes combined and saved to 'merged_routes.json'")
+    
+    # Display overall statistics
+    save_overall_statistics(all_logs)

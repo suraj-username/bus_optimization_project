@@ -2,3 +2,5 @@ osmnx_cache/
 cache/
 .venv/
 __pycache__/
+distance_matrices/
+merged_routes/
