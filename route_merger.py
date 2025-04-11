@@ -4,8 +4,8 @@ import json
 
 MAX_CAPACITY = 60
 DISTANCE_THRESHOLD = 3.0  # in km or whatever unit
-DEMAND_IGNORE_THRESHOLD = 0
-MAX_DEMAND_SUM_FOR_FAR_STOPS = 0
+DEMAND_IGNORE_THRESHOLD = 1
+MAX_IGNORED_DEMAND = 2  # Renamed to better reflect purpose
 MIN_CLOSER_THRESHOLD = 0.5
 
 class MergeLogger:
@@ -122,13 +122,15 @@ def merge_routes(routes, stop_demands, distance_matrix, college_stop, route_stop
             temp_route_stop_demands = deepcopy(route_stop_demands)
             
             all_stops_assigned = True
-            far_demand_sum = 0
+            ignored_demand_sum = 0  # Track total ignored demand
             
             for stop in candidate_route:
                 stop_route_demand = route_stop_demands[remove_route_id].get(stop, 0)
                 
+                # Skip low-demand non-faculty stops
                 if stop_route_demand <= DEMAND_IGNORE_THRESHOLD and stop not in faculty_stops:
-                    continue #Ignore low demand stop unless a faculty is boarding that stop
+                    ignored_demand_sum += stop_route_demand
+                    continue
                 
                 best_increase = float('inf')
                 best_route_id = None
@@ -192,14 +194,15 @@ def merge_routes(routes, stop_demands, distance_matrix, college_stop, route_stop
                         'demand': stop_route_demand,
                         'position': best_insert_pos
                     })
-                    
-                    if best_increase > DISTANCE_THRESHOLD / 2:
-                        far_demand_sum += stop_route_demand
                 else:
                     all_stops_assigned = False
                     break
             
-            if all_stops_assigned and far_demand_sum <= MAX_DEMAND_SUM_FOR_FAR_STOPS:
+            # Skip route removal if too much demand is being ignored
+            if ignored_demand_sum > MAX_IGNORED_DEMAND:
+                all_stops_assigned = False
+            
+            if all_stops_assigned:
                 alive_routes = temp_routes
                 route_demands = temp_route_demands
                 route_stop_demands = temp_route_stop_demands

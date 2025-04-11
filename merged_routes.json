@@ -1,6 +1,7 @@
 {
   "Route 1": [
     "Ambattur Estate",
+    "Golden Flats BS",
     "College"
   ],
   "Route 10": [
@@ -14,26 +15,6 @@
     "Kasi Theatre(Hondai Showroom)",
     "Ekattuthangal(AlagappaU)",
     "Jeyachandra Pallikaranai",
-    "Global BS",
-    "Shoilg BS",
-    "Navallur Cognizant",
-    "Chenganmal BS",
-    "Koman Nagar",
-    "College"
-  ],
-  "Route 11": [
-    "perambur market ",
-    "Perambur BS",
-    "Perambur RS",
-    "Jamalia ",
-    "kovil",
-    "Dhasprakash",
-    "Egmore stadium",
-    "Anna Arivalayam",
-    "SIET College",
-    "IITM",
-    "Palavakkam(opp.Govt school)",
-    "kanathur",
     "College"
   ],
   "Route 12": [
@@ -104,14 +85,6 @@
     "Pebbel Apt",
     "College"
   ],
-  "Route 18": [
-    " Park road",
-    " Thirumangalam",
-    "Blue Star (Saravanabhavan)",
-    " Toyota",
-    " Vengayamandi",
-    " College"
-  ],
   "Route 19": [
     "Valasaravakkam (Municipal office)",
     " Kesavarthini",
@@ -135,16 +108,6 @@
     "Potheri BS",
     "A2Z",
     "Mambakkam",
-    "College"
-  ],
-  "Route 20": [
-    "Royapettah Clock Tower",
-    "Royapettah Hospital",
-    "Police Station",
-    "Ajantha",
-    "Valluvar Statue",
-    "LUZ Corner",
-    "Srinivasapuram(BATA\\Showroom)",
     "College"
   ],
   "Route 22": [
@@ -197,12 +160,7 @@
     "PTC Qtrs BS",
     "Okkiam Pettai BS",
     "Karapakkam Temple",
-    "Kumaran Nagar",
-    "Olympia(opp to AGS)",
-    "Sipcot BS",
-    "Victoria Apt. Kazhipatur",
-    "TVH Apt.",
-    "Padur Roundana",
+    "Chenganmal BS",
     "College"
   ],
   "Route 28": [
@@ -228,7 +186,6 @@
     "Pallavaram",
     "Ponds",
     "MIT",
-    "Indira Mills",
     "College"
   ],
   "Route 3": [
@@ -237,6 +194,9 @@
     "Perambur Rly St.",
     "Jamalia",
     "Ottery",
+    "kovil",
+    "IITM",
+    "Palavakkam(opp.Govt school)",
     "College"
   ],
   "Route 31": [
@@ -249,11 +209,8 @@
   "Route 33": [
     "Devi Karumariamman Temple",
     "Ram Nagar",
-    "Balaiah Garden",
     "Rani Kalyanamandapam",
-    "Echankadu Signal",
     "Kovilambakkam BS",
-    "Vellakal",
     "Medavakkam Panchayat Office",
     "Sri Sai Baba Temple",
     "Sithalapakkam Jn",
@@ -269,6 +226,38 @@
     "Kelambakkam (opp.police station)",
     "College"
   ],
+  "Route 35": [
+    "Aavin (opp Malar H)",
+    "Avvai Home",
+    "Rajaji Bhavan",
+    "Besant Nagar",
+    "Vannandurai",
+    "Thiruvanmiyur TMB Bank",
+    "Palavakkam (Antony Church)",
+    "Vettuvankani (Church)",
+    "Sholinganallur Jn",
+    "Akkarai",
+    "Uthandi (Toll Gate)",
+    "Kovalam Toll",
+    "College",
+    "Indira Nagar CPWD"
+  ],
+  "Route 38": [
+    "Global BS",
+    "Shoilg BS",
+    "Ponniamman Koil",
+    "Opp. to Alamaram",
+    "Kumaran Nagar",
+    "Olympia(opp to AGS)",
+    "Navallur Cognizant",
+    "Sipcot BS",
+    "Victoria Apt. Kazhipatur",
+    "TVH Apt.",
+    "Padur Roundana",
+    "Padur BS",
+    "Opp to Chetinnad",
+    "College"
+  ],
   "Route 39": [
     "Guindy RS",
     " Gurunanak College",
@@ -279,7 +268,6 @@
     "Tansi Nagar",
     "Baby Nagar",
     "Taramani Church",
-    "Opp to Chetinnad",
     "College"
   ],
   "Route 4": [
@@ -351,22 +339,21 @@
     "Beach Station",
     "Chepauk Stadium (Bells road BS)",
     "Triplicane",
+    "Valluvar Statue",
     "MGR Janaki College",
     "Adyar Depot(T.Exchange)",
     "Thiruvanmiyur Post office",
     "College",
-    "Uthandi (Toll Gate)",
-    "Akkarai",
-    "Vannandurai",
-    "Besant Nagar"
+    "Peria Neelankarai (vasan eye care)",
+    "RTO Office"
   ],
   "Route 6": [
     "Beach Station",
     "V.House",
+    "LUZ Corner",
     "F.Shore Estate",
     "MRC Nagar",
     "College",
-    "Nalli",
     "Ambikka Appalam"
   ],
   "Route 7": [
@@ -376,19 +363,6 @@
     "Maduravoyal Erikarai",
     "College"
   ],
-  "Route 8": [
-    "P1 Police Station (pulianthope)",
-    "Nataraja Theatre",
-    "Choolai PO",
-    "Chindadripet Ramada Hotel",
-    "Royapettah BS TTK Road",
-    "Alwarpet (Winners Bakery)",
-    "Marutheeswarar Temple",
-    "RTO Office",
-    "Peria Neelankarai (vasan eye care)",
-    "College",
-    "Indira Nagar CPWD"
-  ],
   "Route 9": [
     "Korattur (Millinium Aprts.)",
     "Korattur Signal",
@@ -396,13 +370,6 @@
     "Annanagar W.Depot",
     "Nerkundram",
     "Ration Kadai",
-    "College"
-  ],
-  "Route 9a": [
-    "Golden Flats (Mangaleri) Park",
-    "Golden Flats BS",
-    "TSK Nagar",
-    "Collector Nagar",
     "College"
   ]
 }
