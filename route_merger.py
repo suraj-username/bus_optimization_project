@@ -145,15 +145,13 @@ def merge_routes(routes, stop_demands, distance_matrix, college_stop, route_stop
                         current_stop = alive_stops[i]
                         current_to_college_dist = distance_matrix[current_stop][college_stop]
                         
-                        if stop_to_college_dist >= current_to_college_dist:
-                            continue
-                        
                         if i == len(alive_stops) - 1:
                             next_stop = college_stop
                         else:
                             next_stop = alive_stops[i+1]
                             next_to_college_dist = distance_matrix[next_stop][college_stop]
                             
+                            # Disallowing backtracking, and making sure that the chosen stop is between the two points
                             if not (current_to_college_dist >= stop_to_college_dist >= next_to_college_dist):
                                 continue
                         
