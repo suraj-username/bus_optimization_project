@@ -59,7 +59,7 @@ class MergeLogger:
             json.dump(self.log, f, indent=2)
         return self.log
 
-def merge_routes(routes, stop_demands, distance_matrix, college_stop, route_stop_demands=None):
+def merge_routes(routes, stop_demands, distance_matrix, college_stop, route_stop_demands, faculty_stops):
     """
     Merge routes while respecting constraints with proper demand calculation.
     If no route can be removed, revert to original routes.
@@ -126,8 +126,8 @@ def merge_routes(routes, stop_demands, distance_matrix, college_stop, route_stop
             for stop in candidate_route:
                 stop_route_demand = route_stop_demands[remove_route_id].get(stop, 0)
                 
-                if stop_route_demand <= DEMAND_IGNORE_THRESHOLD:
-                    continue
+                if stop_route_demand <= DEMAND_IGNORE_THRESHOLD and stop not in faculty_stops:
+                    continue #Ignore low demand stop unless a faculty is boarding that stop
                 
                 best_increase = float('inf')
                 best_route_id = None

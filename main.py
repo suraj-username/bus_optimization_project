@@ -26,6 +26,13 @@ def prepare_merge_inputs(excel_file, selected_routes, filters=None):
         route_passengers = passengers_df[passengers_df['Route'] == route_num]
         demands = route_passengers.groupby('Boarding Point').size().to_dict()
         route_stop_demands[route_id] = demands
+
+    # Build faculty stops set
+    faculty_stops = set(
+        passengers_df[
+            passengers_df['Passenger'].str.strip().str.lower() == 'faculty'
+        ]['Boarding Point'].str.strip()
+    )
     
     print("Creating distance matrix...")
     distance_matrix = create_distance_matrix(stops_df, college_stop)
@@ -36,8 +43,10 @@ def prepare_merge_inputs(excel_file, selected_routes, filters=None):
         'stop_demands': stop_demands,
         'distance_matrix': distance_matrix,
         'college_stop': college_stop,
-        'route_stop_demands': route_stop_demands
+        'route_stop_demands': route_stop_demands,
+        'faculty_stops': faculty_stops
     }
+
 
 def print_merge_summary(log):
     """Print a clean, well-formatted summary of the merge operations"""
@@ -134,7 +143,8 @@ if __name__ == '__main__':
             stop_demands=inputs['stop_demands'],
             distance_matrix=inputs['distance_matrix'],
             college_stop=inputs['college_stop'],
-            route_stop_demands=inputs['route_stop_demands']
+            route_stop_demands=inputs['route_stop_demands'],
+            faculty_stops=inputs['faculty_stops']
         )
         
         # Print the detailed summary for this group
