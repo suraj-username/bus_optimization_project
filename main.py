@@ -123,7 +123,7 @@ if __name__ == '__main__':
     
     filters = {
         'SSN': [1, 'Faculty'],
-        'SNU': [2]
+        'SNU': [2, 3]
     }
     
     # Create a directory for merged routes if it doesn't exist

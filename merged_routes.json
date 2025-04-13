@@ -15,6 +15,11 @@
     "Kasi Theatre(Hondai Showroom)",
     "Ekattuthangal(AlagappaU)",
     "Jeyachandra Pallikaranai",
+    "Global BS",
+    "Shoilg BS",
+    "Sipcot BS",
+    "Victoria Apt. Kazhipatur",
+    "TVH Apt.",
     "College"
   ],
   "Route 12": [
@@ -92,6 +97,8 @@
     "Virugambakkam",
     "KK Nagar Pondy GH",
     " KK Nagar Roundana",
+    "KK Nagar depot",
+    "Srinivasa theatre",
     "Srinivasa theatre",
     " College"
   ],
@@ -108,20 +115,6 @@
     "Potheri BS",
     "A2Z",
     "Mambakkam",
-    "College"
-  ],
-  "Route 22": [
-    "PSBB School",
-    "Double Tank",
-    "KK Nagar depot",
-    "ESI Hospital",
-    "Ashok Pillar",
-    "Govindan Road",
-    "Mettupalayam",
-    "Srinivasa theatre",
-    "Aranganathan Subway",
-    "Saidapet Court",
-    "IGP BS",
     "College"
   ],
   "Route 23": [
@@ -158,8 +151,9 @@
     "Thoraipakkam Flyover",
     "Perungudi Flyover",
     "PTC Qtrs BS",
-    "Okkiam Pettai BS",
     "Karapakkam Temple",
+    "Kumaran Nagar",
+    "Olympia(opp to AGS)",
     "Chenganmal BS",
     "College"
   ],
@@ -242,22 +236,6 @@
     "College",
     "Indira Nagar CPWD"
   ],
-  "Route 38": [
-    "Global BS",
-    "Shoilg BS",
-    "Ponniamman Koil",
-    "Opp. to Alamaram",
-    "Kumaran Nagar",
-    "Olympia(opp to AGS)",
-    "Navallur Cognizant",
-    "Sipcot BS",
-    "Victoria Apt. Kazhipatur",
-    "TVH Apt.",
-    "Padur Roundana",
-    "Padur BS",
-    "Opp to Chetinnad",
-    "College"
-  ],
   "Route 39": [
     "Guindy RS",
     " Gurunanak College",
@@ -273,7 +251,6 @@
   "Route 4": [
     "Porur (Kumar Sweets)",
     "Saravana stores (shell PB)",
-    "Saravana Stores (Daalchine)",
     "Hasthinapuram",
     "College"
   ],
@@ -338,7 +315,6 @@
   "Route 5": [
     "Beach Station",
     "Chepauk Stadium (Bells road BS)",
-    "Triplicane",
     "Valluvar Statue",
     "MGR Janaki College",
     "Adyar Depot(T.Exchange)",
