@@ -82,20 +82,30 @@ def load_original_route_order(cleaned_file_path='cleaned_file.xlsx'):
     return original_orders
 
 def verify_and_correct_order(route_id, stops, original_orders):
-    """Verify and correct stop order based on original route data"""
+    """Verify and correct stop order based on original route data, keeping unknown stops in place."""
     if route_id not in original_orders:
         return stops  # Can't verify, return as is
-    
+
     original_stops = original_orders[route_id]
-    present_stops = [stop for stop in original_stops if stop in stops]
     
-    # Reorder stops based on original order, maintaining only those present
-    ordered_stops = []
-    for stop in original_stops:
-        if stop in stops:
-            ordered_stops.append(stop)
+    # Extract the known stops from 'stops' in the original order
+    known_stops_in_order = [stop for stop in original_stops if stop in stops]
     
-    return ordered_stops
+    # Pointer to the next correct known stop
+    known_index = 0
+
+    corrected_stops = []
+    for stop in stops:
+        if stop in original_stops:
+            # Replace with the next known stop in order
+            corrected_stops.append(known_stops_in_order[known_index])
+            known_index += 1
+        else:
+            # Unknown stop, keep it as is
+            corrected_stops.append(stop)
+    
+    return corrected_stops
+
 
 def try_merge_route(remove_route_id, alive_routes, route_demands, route_stop_demands, 
                    distance_matrix, college_stop, faculty_stops, original_orders, logger):
@@ -112,7 +122,8 @@ def try_merge_route(remove_route_id, alive_routes, route_demands, route_stop_dem
     ignored_demand_sum = 0
     
     for stop in candidate_route:
-        stop_route_demand = route_stop_demands[remove_route_id].get(stop, 0)
+        # Get the specific demand of this stop from the route being removed
+        stop_route_demand = temp_route_stop_demands[remove_route_id].get(stop, 0)
         
         # Skip low-demand non-faculty stops
         if stop_route_demand <= DEMAND_IGNORE_THRESHOLD and stop not in faculty_stops:
@@ -128,6 +139,7 @@ def try_merge_route(remove_route_id, alive_routes, route_demands, route_stop_dem
             if alive_route_id == remove_route_id:
                 continue
             
+            # Check if this route can accommodate the demand from this specific stop in the removing route
             if temp_route_demands[alive_route_id] + stop_route_demand > MAX_CAPACITY:
                 continue
             
@@ -163,8 +175,11 @@ def try_merge_route(remove_route_id, alive_routes, route_demands, route_stop_dem
         if best_route_id is not None:
             temp_routes[best_route_id].insert(best_insert_pos, stop)
             
+            # Check if the stop already exists in the target route's stop demands
             if stop not in temp_route_stop_demands[best_route_id]:
                 temp_route_stop_demands[best_route_id][stop] = 0
+            
+            # Add the demand from the removing route to the target route
             temp_route_stop_demands[best_route_id][stop] += stop_route_demand
             temp_route_demands[best_route_id] += stop_route_demand
             

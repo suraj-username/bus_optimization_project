@@ -137,6 +137,8 @@ if __name__ == '__main__':
         print(f"\n\n======= PROCESSING ROUTE GROUP {group_index + 1}: {selected_routes} =======")
         
         inputs = prepare_merge_inputs(excel_file, selected_routes, filters)
+        #print(inputs['routes'])
+        #print('')
         
         merged_routes, merge_log = merge_routes(
             routes=inputs['routes'],
